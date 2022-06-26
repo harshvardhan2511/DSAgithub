@@ -1,11 +1,15 @@
+// Generate the combinations in order to get the desired sum.
+// Time Complexity = (2^k)*main
+// Space Complexity = Depth of the recursion tree = n
+
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
 
 void CombSum(int ind, int target, vector<int> &ds, vector<int> v, int N)
 {
-    if (ind == v.size())
-        if (target == 0)
+    if (ind == v.size()) // When flow of control reaches the end of vector
+        if (target == 0) // Checks whether the combination was correct
         {
             for (auto it : ds)
             {
@@ -16,15 +20,15 @@ void CombSum(int ind, int target, vector<int> &ds, vector<int> v, int N)
         }
 
     // Picking the element
-    if (v[ind] <= target)
+    if (v[ind] <= target) // Pick element only if number is less than target
     {
-        ds.push_back(v[ind]);
-        CombSum(ind, target - v[ind], ds, v, N);
-        ds.pop_back();
+        ds.push_back(v[ind]);                    // push the number in another data structre. Here i used vector.
+        CombSum(ind, target - v[ind], ds, v, N); // Subtract the number from target and call function again
+        ds.pop_back();                           // While returning pop back the last eleemnt. Since pushing was done before calling the function, mandatory to remove the undesired element which made it return.
     }
 
     // Not picking the element
-    CombSum(ind + 1, target, ds, v, N);
+    CombSum(ind + 1, target, ds, v, N); // Basically not pick and moving onto the next element.
 }
 
 int main()
