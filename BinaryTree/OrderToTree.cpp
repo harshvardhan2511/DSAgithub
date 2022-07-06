@@ -1,4 +1,4 @@
-// Sequence to pre-in-post Order is given and we will build tree from it
+// Sequence to preorder and Inorder is given and we will build tree from it
 // ALGOTITHM
 /*
 1. Pick element from preorder and create a node.
